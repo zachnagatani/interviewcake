@@ -2,13 +2,17 @@
   "name": "interviewcake",
   "version": "1.0.0",
   "description": "A repo of solutions to interview cake's questions",
-  "main": "index.js",
   "directories": {
-    "test": "tests"
-  },
-  "scripts": {
     "test": "test"
   },
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha -w",
+    "twin": "node ./node_modules/mocha/bin/mocha -w"
+  },
   "author": "Zach Nagatani",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.0.0",
+    "mocha": "^3.4.2"
+  }
 }

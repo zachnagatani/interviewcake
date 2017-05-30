@@ -18,7 +18,7 @@ function tokenValidator(str) {
 
         ')': {
         	char: '(',
-            opener: ')'
+            opener: '('
         }
     };
 
@@ -32,9 +32,7 @@ function tokenValidator(str) {
         }
     }
 
-    if (!stack.length) {
-    	return true;
-    }
+    return !stack.length ? true : false;
 }
 
 module.exports = {
