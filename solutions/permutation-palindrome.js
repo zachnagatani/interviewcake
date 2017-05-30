@@ -64,6 +64,66 @@ function checkForPalindromes(permutations) {
     return false;
 }
 
+/**
+ * Another solution for Permutation Palindromes. Tracks character repetition instead of having to loop through each palindrome.
+ * Still not as efficient as could be.
+ * Checks if any permutation of an input string is a palindrome (the same forwards and backwards)
+ * @param str - The input string to be checked
+ * @returns True if a palindrome is found, false if not
+ */
+function permutationPalindrome2(str) {
+    let strArr = str.split(''),
+        head = 0,
+        tail = strArr.length - 1,
+        tracker = {};
+
+    while (head < tail) {
+        let headVal = strArr[head],
+            tailVal = strArr[tail];
+
+        if (!tracker[headVal]) {
+            tracker[headVal] = 1;
+        } else {
+            tracker[headVal]++;
+        }
+
+        if (!tracker[tailVal]) {
+            tracker[tailVal] = 1;
+        } else {
+            tracker[tailVal]++;
+        }
+
+        head++;
+        tail--;
+    }
+
+    if (head === tail) {
+        let headVal = strArr[head];
+
+        if (!tracker[headVal]) {
+            tracker[headVal] = 1;
+        } else {
+            tracker[headVal]++;
+        }
+    }
+
+    let oddTracker = 0;
+
+    for (var char in tracker) {
+        if (tracker[char] % 2 !== 0) {
+            oddTracker++;
+        }
+    }
+
+    switch (strArr.length % 2 === 0) {
+        case true:
+            return !oddTracker ? true : false;
+        case false:
+            return oddTracker === 1 ? true : false;
+    }
+}
+
 module.exports = {
-    permutationPalindrome
+    permutationPalindrome,
+    permutationPalindrome2
 };
