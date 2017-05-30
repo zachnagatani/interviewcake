@@ -1,0 +1,14 @@
+{
+  "name": "interviewcake",
+  "version": "1.0.0",
+  "description": "A repo of solutions to interview cake's questions",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Zach Nagatani",
+  "license": "ISC"
+}
