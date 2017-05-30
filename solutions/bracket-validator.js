@@ -3,7 +3,7 @@
 * @param {string} str - A string to validate
 * @returns {boolean} true if validation succeeds, false if validation fails
 */
-function tokenValidator(str) {
+function bracketValidator(str) {
 	let stack = [];
     const closers = {
     	'}': {
@@ -36,5 +36,5 @@ function tokenValidator(str) {
 }
 
 module.exports = {
-    tokenValidator
+    bracketValidator
 };

@@ -1,5 +1,5 @@
 const expect = require('chai').expect,
-      solution = require('../solutions/bracket-validator').tokenValidator;
+      solution = require('../solutions/bracket-validator').bracketValidator;
 
 describe('Bracket validator', () => {
     it('should return true if openers/closers are nested properly "{[]()}"', () => {
