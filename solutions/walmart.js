@@ -51,15 +51,7 @@ function getPageFromServer(pageIndex){
  */
 function getDataRangeFromServer(startIndex, endIndex){
     return new Promise(function(resolve){
-        const pageIndexRange = getIndexRange(startIndex, endIndex);
-
-        let pagePromises = [],
-            i = pageIndexRange.low;
-
-        while (i <= pageIndexRange.high) {
-            pagePromises.push(getPageFromServer(i));
-            i++;
-        }
+        const pagePromises = createPromiseIterable();
 
         // Resolves with an array of all the resolve values (dataRanges) from the promises array
         Promise.all(pagePromises)
@@ -70,10 +62,28 @@ function getDataRangeFromServer(startIndex, endIndex){
             });
 
         /**
+         * Creates an iterable (array) of getPageFromServer promises
+         * @returns {object[]} pagePromises - An array of promises (from getPageFromServer function calls)
+         */
+        function createPromiseIterable() {
+            const pageIndexRange = getIndexRange(startIndex, endIndex);
+
+            let pagePromises = [],
+                i = pageIndexRange.low;
+
+            while (i <= pageIndexRange.high) {
+                pagePromises.push(getPageFromServer(i));
+                i++;
+            }
+
+            return pagePromises;
+        }
+
+        /**
          * Gets the highest and lowest page indices needed for calls to getPageFromServer
          * @param {number} startIndex - The low (start index) of the range of data
          * @param {number} endIndex - The high (end index) of the range of data
-         * @return {object} Object with a low and high property referring to their respective index
+         * @returns {object} Object with a low and high property referring to their respective index
          */
         function getIndexRange(startIndex, endIndex) {
             const pageSize = 25;
@@ -87,6 +97,7 @@ function getDataRangeFromServer(startIndex, endIndex){
         /**
          * Combines a multi-dimensional array of dataRanges into one combinedDataRange
          * @param {number[][]} dataRanges - An multi-dimensional array of dataRanges
+         * @returns {number[]} combinedDataRange - A range of data formed from combining dataRanges
          */
         function combineDataRanges(dataRanges) {
             let combinedDataRange = [];
@@ -103,6 +114,7 @@ function getDataRangeFromServer(startIndex, endIndex){
          * @param {array} dataRange - the data range to trim
          * @param {number} startIndex of data
          * @param {number} endIndex of data
+         * @returns {number[]} dataRange - A dataRange, trimmed according to startIndex and endIndex
          */
         function trimDataRange(dataRange, startIndex, endIndex) {
             dataRange.splice(0, dataRange.indexOf(startIndex));
