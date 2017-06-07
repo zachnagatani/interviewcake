@@ -3,7 +3,7 @@ const expect = require('chai').expect,
       solution2 = require('../solutions/permutation-palindrome').permutationPalindrome2;
 
 describe('Permutation palindrome checker', () => {
-    it.only('should return true if any permutation of a string is a palindrome', () => {
+    it('should return true if any permutation of a string is a palindrome', () => {
         expect(solution('civic')).to.be.true;
         expect(solution('ivicc')).to.be.true;
         expect(solution('mom')).to.be.true;
@@ -15,7 +15,7 @@ describe('Permutation palindrome checker', () => {
         expect(solution2('omm')).to.be.true;
     });
 
-    it.only('should return false if no permutation of a string is a palindrome', () => {
+    it('should return false if no permutation of a string is a palindrome', () => {
         expect(solution('civil')).to.be.false;
         expect(solution('livci')).to.be.false;
         expect(solution('tom')).to.be.false;
