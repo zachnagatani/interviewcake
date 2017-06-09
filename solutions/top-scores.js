@@ -22,8 +22,6 @@ function sortTopScores(unsortedScores, HIGHEST_POSSIBLE_SCORE) {
     return outputArr;
 }
 
-sortTopScores([37, 37, 89, 41, 41, 65, 65, 91, 53], 100);
-
 module.exports = {
     sortTopScores
 };
